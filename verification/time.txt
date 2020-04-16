@@ -1,0 +1,39 @@
+Traceback (most recent call last):
+  File "gadget_trace.py", line 62, in <module>
+    target = S.EvalXOR(x, y, rx, ry)
+  File "/home/oseker/2019/WhiteBox/Hybrid Masking/Possible public Code/verification/schemes.py", line 373, in EvalXOR
+    return z0, z1, z2, z3, z3
+NameError: global name 'z0' is not defined
+Exception KeyboardInterrupt: KeyboardInterrupt() in <module 'collections' from '/home/oseker/SageMath/local/lib/python2.7/collections.pyc'> ignored
+/home/oseker/SageMath/local/lib/python2.7/site-packages/sage/combinat/partition.py:317: RuntimeWarning: Cython module failed to patch module with custom type
+  from sage.combinat.partitions import number_of_partitions as bober_number_of_partitions
+Traceback (most recent call last):
+  File "gadget_check.py", line 2, in <module>
+    from sage.all import *
+  File "/home/oseker/SageMath/local/lib/python2.7/site-packages/sage/all.py", line 130, in <module>
+    from sage.combinat.all   import *
+  File "/home/oseker/SageMath/local/lib/python2.7/site-packages/sage/combinat/all.py", line 117, in <module>
+    from .parking_functions import ParkingFunctions, ParkingFunction
+  File "/home/oseker/SageMath/local/lib/python2.7/site-packages/sage/combinat/parking_functions.py", line 73, in <module>
+    from sage.combinat.dyck_word import DyckWord
+  File "/home/oseker/SageMath/local/lib/python2.7/site-packages/sage/combinat/dyck_word.py", line 4222, in <module>
+    DyckWords.global_options=deprecated_function_alias(18555, DyckWords.options)
+  File "/home/oseker/SageMath/local/lib/python2.7/site-packages/sage/misc/superseded.py", line 506, in deprecated_function_alias
+    frame1 = inspect.getouterframes(inspect.currentframe())[1][0]
+  File "/home/oseker/SageMath/local/lib/python2.7/inspect.py", line 1042, in getouterframes
+    framelist.append((frame,) + getframeinfo(frame, context))
+  File "/home/oseker/SageMath/local/lib/python2.7/inspect.py", line 1017, in getframeinfo
+    lines, lnum = findsource(frame)
+  File "/home/oseker/SageMath/local/lib/python2.7/inspect.py", line 533, in findsource
+    lines = linecache.getlines(file, module.__dict__)
+  File "/home/oseker/SageMath/local/lib/python2.7/linecache.py", line 41, in getlines
+    return updatecache(filename, module_globals)
+  File "/home/oseker/SageMath/local/lib/python2.7/linecache.py", line 132, in updatecache
+    lines = fp.readlines()
+  File "src/cysignals/signals.pyx", line 251, in cysignals.signals.python_check_interrupt
+  File "src/cysignals/signals.pyx", line 94, in cysignals.signals.sig_raise_exception
+KeyboardInterrupt
+
+real	0m3.274s
+user	0m1.646s
+sys	0m0.426s
