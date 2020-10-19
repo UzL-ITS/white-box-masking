@@ -1,0 +1,19 @@
+proc XOR:
+  public inputs: tx[0:1], ty[0:1]	
+  inputs: x[0:1], y[0:1]
+  outputs: z[0:1], tz[0:1];
+    
+    tz := tx + ty;
+    z := x + y;
+    
+    x0y1=tx[0] * ty[1];
+    x1y0=tx[1] * ty[0];
+    U = x0y1 + x1y0;
+    
+    z[1] = z[1] + U;
+  
+  
+  end
+
+verbose 1
+order 1 noglitch  SNI XOR

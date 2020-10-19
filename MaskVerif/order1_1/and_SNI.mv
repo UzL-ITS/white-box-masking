@@ -1,0 +1,65 @@
+proc AND:
+  public inputs: tx[0:1], ty[0:1]	
+  inputs: x[0:1], y[0:1]
+  outputs: z[0:1], tz[0:1]
+  randoms: r[0:0], trx[0:1], try[0:1];
+    
+  tz[0] = tx[0] * ty[1];
+  tz[0] = tz[0] + trx[0];
+  tz[0] = tz[0] + trx[1];
+  
+  tz[1] = tx[1] * ty[0];
+  tz[1] = tz[1] + try[0];
+  tz[1] = tz[1] + try[1];
+  
+  tempx1 = trx[0] * ty[0];
+  tempx2 = tx[0] * y[0];
+  tempx3 = tempx1 + tempx2;
+  tempx4 = tx[1] * tempx3;
+  
+  tempx5 = ty[0] * x[0];
+  tempx6 = try[0] * tx[0];
+  tempx7 = tempx5 + tempx6;
+  tempx8 = ty[1] * tempx7;
+  
+  tempy1 = trx[1] * ty[0];
+  tempy2 = tx[0] * y[1];
+  tempy3 = tempy1 + tempy2;
+  tempy4 = tx[1] * tempy3;
+  
+  tempy5 = ty[0] * x[1];
+  tempy6 = try[1] * tx[0];
+  tempy7 = tempy5 + tempy6;
+  tempy8 = ty[1] * tempy7;
+  
+  tempr1 = trx[0] + trx[1];
+  tempr2 = tempr1 * try[0];
+  tempr3 = tempr1 * try[1];
+
+  
+  r10 = tempx4 + tempx8;
+  r10 = r10 + tempr2;
+  
+  r20 =  tempy4 + tempy8;
+  r20 = r20 + tempr3;
+  
+  
+  z[0] = x[0] * y[0];
+  z[1] = x[1] * y[1];
+  
+  
+  z[0] = z[0] + r[0];
+  xiyj = x[0] * y[1];
+  xjyi = x[1] * y[0];
+  tmp0 = xiyj + r[0];
+  tmp1 = tmp0 + xjyi;
+  z[1] = z[1] + tmp1;
+
+  z[0] = z[0] + r10;
+  z[1] = z[1] + r20;
+
+  end
+
+verbose 1
+order 1 noglitch  SNI AND
+

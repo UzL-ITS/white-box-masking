@@ -1,0 +1,123 @@
+proc AND:
+  public inputs: tx[0:2], ty[0:2]	
+  inputs: x[0:1], y[0:1]
+  outputs: z[0:1], tz[0:2]
+  randoms: r[0:0], tr0[0:1], tr1[0:1], tr2[0:1];
+    
+  tz[0] = tx[0] * ty[1];
+  tz[0] = tz[0] + tr0[0];
+  tz[0] = tz[0] + tr0[1];
+  
+  tz[1] = tx[1] * ty[2];
+  tz[1] = tz[1] + tr1[0];
+  tz[1] = tz[1] + tr1[1];
+  
+  tz[2] = tx[2] * ty[0];
+  tz[2] = tz[2] + tr2[0];
+  tz[2] = tz[2] + tr2[1];
+  
+  
+  u = tr1[0] + tr1[1];
+  v = tr2[0] + tr2[1];
+  uv = u * v;
+  
+  
+  x1yj  = tx[1] * y[0];   (*!!!*) 
+  r0jy0 = tr0[0] * ty[0]; (*!!!*) 
+  r1jy1 = tr1[0] * ty[1]; (*!!!*) 
+  t01    = x1yj + r0jy0;
+  t02    = t01 * tx[2];
+  t03    = r1jy1 * v;
+  t04    = t03 + t02; 
+  
+  y2xj  = ty[2] * x[0];   (*!!!*) 
+  r1jx2 = tr1[0] * tx[2]; (*!!!*) 
+  r0jx2 = tr0[0] * tx[2]; (*!!!*) 
+  t11    = y2xj + r1jx2;
+  t12    = t11 * ty[1];
+  t13    = r0jx2 * u;
+  t14    = t13 + t12; 
+  
+  x2y0 = tx[2] * ty[0];
+  x1y2 = tx[1] * ty[2];
+  x0y1 = tx[0] * ty[1];
+  r1jx2y0 = tr1[0] * x2y0; (*!!!*) 
+  r2jx1y2 = tr2[0] * x1y2; (*!!!*)
+  r0jx1y2 = tr0[0] * x1y2; (*!!!*)
+  t21     = x2y0 + v;
+  t22     = r0jx1y2 * t21;
+  t23 = r1jx2y0 + r2jx1y2;
+  t24 = t23 * x0y1;
+  t25 = t24 + t22;
+  
+  r0jx0 = tr0[0] * tx[0]; (*!!!*) 
+  r1jy1 = tr1[0] * ty[1]; (*!!!*) 
+  uvr0j = uv * tr0[0];    (*!!!*) 
+  t31   = r0jx0 + r1jy1;
+  t32   = x2y0 * t31;
+  t33   = t32 + uvr0j;
+  
+  tmp1 = t04 + t14;
+  tmp2 = t25 + t33;
+  r10  = tmp1 + tmp2; 
+  
+  
+  x1yj  = tx[1] * y[1];   (*!!!*) 
+  r0jy0 = tr0[1] * ty[0]; (*!!!*) 
+  r1jy1 = tr1[1] * ty[1]; (*!!!*) 
+  t01    = x1yj + r0jy0;
+  t02    = t01 * tx[2];
+  t03    = r1jy1 * v;
+  t04    = t03 + t02; 
+  
+  y2xj  = ty[2] * x[1];   (*!!!*) 
+  r1jx2 = tr1[1] * tx[2]; (*!!!*) 
+  r0jx2 = tr0[1] * tx[2]; (*!!!*) 
+  t11    = y2xj + r1jx2;
+  t12    = t11 * ty[1];
+  t13    = r0jx2 * u;
+  t14    = t13 + t12; 
+  
+  x2y0 = tx[2] * ty[0];
+  x1y2 = tx[1] * ty[2];
+  x0y1 = tx[0] * ty[1];
+  r1jx2y0 = tr1[1] * x2y0; (*!!!*) 
+  r2jx1y2 = tr2[1] * x1y2; (*!!!*)
+  r0jx1y2 = tr0[1] * x1y2; (*!!!*)
+  t21     = x2y0 + v;
+  t22     = r0jx1y2 * t21;
+  t23 = r1jx2y0 + r2jx1y2;
+  t24 = t23 * x0y1;
+  t25 = t24 + t22;
+  
+  r0jx0 = tr0[1] * tx[0]; (*!!!*) 
+  r1jy1 = tr1[1] * ty[1]; (*!!!*) 
+  uvr0j = uv * tr0[1];    (*!!!*) 
+  t31   = r0jx0 + r1jy1;
+  t32   = x2y0 * t31;
+  t33   = t32 + uvr0j;
+  
+  tmp1 = t04 + t14;
+  tmp2 = t25 + t33;
+  r20  = tmp1 + tmp2;  
+  
+  
+  z[0] = x[0] * y[0];
+  z[1] = x[1] * y[1];
+  
+  
+  z[0] = z[0] + r[0];
+  xiyj = x[0] * y[1];
+  xjyi = x[1] * y[0];
+  tmp0 = xiyj + r[0];
+  tmp1 = tmp0 + xjyi;
+  z[1] = z[1] + tmp1;
+
+  z[0] = z[0] + r10;
+  z[1] = z[1] + r20;
+
+  end
+
+verbose 1
+order 1 noglitch  SNI AND
+

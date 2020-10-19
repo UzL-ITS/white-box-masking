@@ -1,0 +1,250 @@
+proc AND:
+  public inputs: tx[0:2], ty[0:2]	
+  inputs: x[0:3], y[0:3]
+  outputs: z[0:3], tz[0:2]
+  randoms: r[0:5], tr0[0:3], tr1[0:3], tr2[0:3];
+    
+  tz[0] = tx[0] * ty[1];
+  tz[0] = tz[0] + tr0[0];
+  tz[0] = tz[0] + tr0[1];
+  tz[0] = tz[0] + tr0[2];
+  tz[0] = tz[0] + tr0[3];
+  
+  
+  tz[1] = tx[1] * ty[2];
+  tz[1] = tz[1] + tr1[0];
+  tz[1] = tz[1] + tr1[1];
+  tz[1] = tz[1] + tr1[2];
+  tz[1] = tz[1] + tr1[3];
+  
+  tz[2] = tx[2] * ty[0];
+  tz[2] = tz[2] + tr2[0];
+  tz[2] = tz[2] + tr2[1];
+  tz[2] = tz[2] + tr2[2];
+  tz[2] = tz[2] + tr2[3];
+  
+  u = tr1[0] + tr1[1];
+  u = u + tr1[2];
+  u = u + tr1[3];
+  
+  
+  v = tr2[0] + tr2[1];
+  v = v + tr2[2];
+  v = v + tr2[3]; 
+  uv = u * v;
+  
+  x1yj  = tx[1] * y[0];   (*!!!*) 
+  r0jy0 = tr0[0] * ty[0]; (*!!!*) 
+  r1jy1 = tr1[0] * ty[1]; (*!!!*) 
+  t01    = x1yj + r0jy0;
+  t02    = t01 * tx[2];
+  t03    = r1jy1 * v;
+  t04    = t03 + t02; 
+  
+  y2xj  = ty[2] * x[0];   (*!!!*) 
+  r1jx2 = tr1[0] * tx[2]; (*!!!*) 
+  r0jx2 = tr0[0] * tx[2]; (*!!!*) 
+  t11    = y2xj + r1jx2;
+  t12    = t11 * ty[1];
+  t13    = r0jx2 * u;
+  t14    = t13 + t12; 
+  
+  x2y0 = tx[2] * ty[0];
+  x1y2 = tx[1] * ty[2];
+  x0y1 = tx[0] * ty[1];
+  r1jx2y0 = tr1[0] * x2y0; (*!!!*) 
+  r2jx1y2 = tr2[0] * x1y2; (*!!!*)
+  r0jx1y2 = tr0[0] * x1y2; (*!!!*)
+  t21     = x2y0 + v;
+  t22     = r0jx1y2 * t21;
+  t23 = r1jx2y0 + r2jx1y2;
+  t24 = t23 * x0y1;
+  t25 = t24 + t22;
+  
+  r0jx0 = tr0[0] * tx[0]; (*!!!*) 
+  r1jy1 = tr1[0] * ty[1]; (*!!!*) 
+  uvr0j = uv * tr0[0];    (*!!!*) 
+  t31   = r0jx0 + r1jy1;
+  t32   = x2y0 * t31;
+  t33   = t32 + uvr0j;
+  
+  tmp1 = t04 + t14;
+  tmp2 = t25 + t33;
+  r10  = tmp1 + tmp2; 
+  
+   x1yj  = tx[1] * y[1];   (*!!!*) 
+  r0jy0 = tr0[1] * ty[0]; (*!!!*) 
+  r1jy1 = tr1[1] * ty[1]; (*!!!*) 
+  t01    = x1yj + r0jy0;
+  t02    = t01 * tx[2];
+  t03    = r1jy1 * v;
+  t04    = t03 + t02; 
+  
+  y2xj  = ty[2] * x[1];   (*!!!*) 
+  r1jx2 = tr1[1] * tx[2]; (*!!!*) 
+  r0jx2 = tr0[1] * tx[2]; (*!!!*) 
+  t11    = y2xj + r1jx2;
+  t12    = t11 * ty[1];
+  t13    = r0jx2 * u;
+  t14    = t13 + t12; 
+  
+  x2y0 = tx[2] * ty[0];
+  x1y2 = tx[1] * ty[2];
+  x0y1 = tx[0] * ty[1];
+  r1jx2y0 = tr1[1] * x2y0; (*!!!*) 
+  r2jx1y2 = tr2[1] * x1y2; (*!!!*)
+  r0jx1y2 = tr0[1] * x1y2; (*!!!*)
+  t21     = x2y0 + v;
+  t22     = r0jx1y2 * t21;
+  t23 = r1jx2y0 + r2jx1y2;
+  t24 = t23 * x0y1;
+  t25 = t24 + t22;
+  
+  r0jx0 = tr0[1] * tx[0]; (*!!!*) 
+  r1jy1 = tr1[1] * ty[1]; (*!!!*) 
+  uvr0j = uv * tr0[1];    (*!!!*) 
+  t31   = r0jx0 + r1jy1;
+  t32   = x2y0 * t31;
+  t33   = t32 + uvr0j;
+  
+  tmp1 = t04 + t14;
+  tmp2 = t25 + t33;
+  r20  = tmp1 + tmp2;  
+  
+  x1yj  = tx[1] * y[2];   (*!!!*) 
+  r0jy0 = tr0[2] * ty[0]; (*!!!*) 
+  r1jy1 = tr1[2] * ty[1]; (*!!!*) 
+  t01    = x1yj + r0jy0;
+  t02    = t01 * tx[2];
+  t03    = r1jy1 * v;
+  t04    = t03 + t02; 
+  
+  y2xj  = ty[2] * x[2];   (*!!!*) 
+  r1jx2 = tr1[2] * tx[2]; (*!!!*) 
+  r0jx2 = tr0[2] * tx[2]; (*!!!*) 
+  t11    = y2xj + r1jx2;
+  t12    = t11 * ty[1];
+  t13    = r0jx2 * u;
+  t14    = t13 + t12; 
+  
+  x2y0 = tx[2] * ty[0];
+  x1y2 = tx[1] * ty[2];
+  x0y1 = tx[0] * ty[1];
+  r1jx2y0 = tr1[2] * x2y0; (*!!!*) 
+  r2jx1y2 = tr2[2] * x1y2; (*!!!*)
+  r0jx1y2 = tr0[2] * x1y2; (*!!!*)
+  t21     = x2y0 + v;
+  t22     = r0jx1y2 * t21;
+  t23 = r1jx2y0 + r2jx1y2;
+  t24 = t23 * x0y1;
+  t25 = t24 + t22;
+  
+  r0jx0 = tr0[2] * tx[0]; (*!!!*) 
+  r1jy1 = tr1[2] * ty[1]; (*!!!*) 
+  uvr0j = uv * tr0[2];    (*!!!*) 
+  t31   = r0jx0 + r1jy1;
+  t32   = x2y0 * t31;
+  t33   = t32 + uvr0j;
+  
+  tmp1 = t04 + t14;
+  tmp2 = t25 + t33;
+  r30  = tmp1 + tmp2;  
+  
+  x1yj  = tx[1] * y[3];   (*!!!*) 
+  r0jy0 = tr0[3] * ty[0]; (*!!!*) 
+  r1jy1 = tr1[3] * ty[1]; (*!!!*) 
+  t01    = x1yj + r0jy0;
+  t02    = t01 * tx[2];
+  t03    = r1jy1 * v;
+  t04    = t03 + t02; 
+  
+  y2xj  = ty[2] * x[3];   (*!!!*) 
+  r1jx2 = tr1[3] * tx[2]; (*!!!*) 
+  r0jx2 = tr0[3] * tx[2]; (*!!!*) 
+  t11    = y2xj + r1jx2;
+  t12    = t11 * ty[1];
+  t13    = r0jx2 * u;
+  t14    = t13 + t12; 
+  
+  x2y0 = tx[2] * ty[0];
+  x1y2 = tx[1] * ty[2];
+  x0y1 = tx[0] * ty[1];
+  r1jx2y0 = tr1[3] * x2y0; (*!!!*) 
+  r2jx1y2 = tr2[3] * x1y2; (*!!!*)
+  r0jx1y2 = tr0[3] * x1y2; (*!!!*)
+  t21     = x2y0 + v;
+  t22     = r0jx1y2 * t21;
+  t23 = r1jx2y0 + r2jx1y2;
+  t24 = t23 * x0y1;
+  t25 = t24 + t22;
+  
+  r0jx0 = tr0[3] * tx[0]; (*!!!*) 
+  r1jy1 = tr1[3] * ty[1]; (*!!!*) 
+  uvr0j = uv * tr0[3];    (*!!!*) 
+  t31   = r0jx0 + r1jy1;
+  t32   = x2y0 * t31;
+  t33   = t32 + uvr0j;
+  
+  tmp1 = t04 + t14;
+  tmp2 = t25 + t33;
+  r40  = tmp1 + tmp2;  
+	  
+	  
+	  z[0] = x[0] * y[0];
+	  z[1] = x[1] * y[1];
+	  z[2] = x[2] * y[2];
+	  z[3] = x[3] * y[3];
+	  
+	  z[0] = z[0] + r[0];
+	  xiyj = x[0] * y[1];
+	  xjyi = x[1] * y[0];
+	  tmp0 = xiyj + r[0];
+	  tmp1 = tmp0 + xjyi;
+	  z[1] = z[1] + tmp1;
+	  
+	  z[0] = z[0] + r[1];
+	  xiyj = x[0] * y[2];
+	  xjyi = x[2] * y[0];
+	  tmp0 = xiyj + r[1];
+	  tmp1 = tmp0 + xjyi;
+	  z[2] = z[2] + tmp1;
+	  
+	  z[0] = z[0] + r[2];
+	  xiyj = x[0] * y[3];
+	  xjyi = x[3] * y[0];
+	  tmp0 = xiyj + r[2];
+	  tmp1 = tmp0 + xjyi;
+	  z[3] = z[3] + tmp1;
+	  
+	  z[1] = z[1] + r[3];
+	  xiyj = x[1] * y[2];
+	  xjyi = x[2] * y[1];
+	  tmp0 = xiyj + r[3];
+	  tmp1 = tmp0 + xjyi;
+	  z[2] = z[2] + tmp1;
+	  
+	  z[1] = z[1] + r[4];
+	  xiyj = x[1] * y[3];
+	  xjyi = x[3] * y[1];
+	  tmp0 = xiyj + r[4];
+	  tmp1 = tmp0 + xjyi;
+	  z[3] = z[3] + tmp1;
+	  
+	  z[2] = z[2] + r[5];
+	  xiyj = x[2] * y[3];
+	  xjyi = x[3] * y[2];
+	  tmp0 = xiyj + r[5];
+	  tmp1 = tmp0 + xjyi;
+	  z[3] = z[3] + tmp1;
+	     
+	  z[0] = z[0] + r10;
+  	  z[1] = z[1] + r20;
+  	  z[2] = z[2] + r30;
+  	  z[3] = z[3] + r40;
+  
+	   
+  end
+
+
+verbose 1
+order 3 noglitch  NI AND

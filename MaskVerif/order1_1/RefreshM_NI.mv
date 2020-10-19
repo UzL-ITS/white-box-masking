@@ -1,0 +1,34 @@
+proc RefreshM:
+  public inputs: tx[0:1]
+  inputs: x[0:1]
+  outputs: z[0:1],tz[0:1]
+  randoms: tr[0:1],r[0:1];
+
+    z[0] = x[0] + r[1];
+    z[1] = x[1] + r[1];
+    
+    tz[0] = tx[0] + tr[0];
+    tz[1] = tx[1] + tr[1]; 
+  
+    x1r0 = tx[1] + r[0];
+    x0r0 = tx[0] + r[0];
+    
+    tmp1 = tr[0] * x1r0;
+    tmp2 = tr[1] * x0r0;
+    W = tmp1 + tmp2 ;
+    
+    r0r0 = tr[0] + r[0];
+    r1r0 = tr[1] + r[0];
+    tmp3 = r0r0 * r1r0;
+    R = tmp3 + r[0];
+    
+    z[1] = z[1] + W;
+    z[1] = z[1] + R;
+    
+  
+  end
+
+verbose 1
+order 1 noglitch  NI RefreshM
+
+

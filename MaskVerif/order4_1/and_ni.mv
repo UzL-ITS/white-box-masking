@@ -1,0 +1,195 @@
+proc AND:
+  public inputs: tx[0:1], ty[0:1]	
+  inputs: x[0:4], y[0:4]
+  outputs: z[0:4], tz[0:1]
+  randoms: r[0:9], trx[0:4], try[0:4];
+    
+	  tz[0] = tx[0] * ty[1];
+	  tz[0] = tz[0] + trx[0];
+	  tz[0] = tz[0] + trx[1];
+	  tz[0] = tz[0] + trx[2];
+	  tz[0] = tz[0] + trx[3];
+	  tz[0] = tz[0] + trx[4];
+	  
+	  
+	  tz[1] = tx[1] * ty[0];
+	  tz[1] = tz[1] + try[0];
+	  tz[1] = tz[1] + try[1];
+	  tz[1] = tz[1] + try[2];
+	  tz[1] = tz[1] + try[3];
+	  tz[1] = tz[1] + try[4];
+	  
+	  temp01 = trx[0] * ty[0];
+	  temp02 = tx[0] * y[0];
+	  temp03 = temp01 + temp02;
+	  temp04 = tx[1] * temp03;
+	  
+	  temp05 = ty[0] * x[0];
+	  temp06 = try[0] * tx[0];
+	  temp07 = temp05 + temp06;
+	  temp08 = ty[1] * temp07;
+	  
+	  
+	  temp11 = trx[1] * ty[0];
+	  temp12 = tx[0] * y[1];
+	  temp13 = temp11 + temp12;
+	  temp14 = tx[1] * temp13;
+	  
+	  temp15 = ty[0] * x[1];
+	  temp16 = try[1] * tx[0];
+	  temp17 = temp15 + temp16;
+	  temp18 = ty[1] * temp17;
+	 
+	  
+	  temp21 = trx[2] * ty[0];
+	  temp22 = tx[0] * y[2];
+	  temp23 = temp21 + temp22;
+	  temp24 = tx[1] * temp23;
+	  
+	  temp25 = ty[0] * x[2];
+	  temp26 = try[2] * tx[0];
+	  temp27 = temp25 + temp26;
+	  temp28 = ty[1] * temp27;
+	  
+	  temp31 = trx[3] * ty[0];
+	  temp32 = tx[0] * y[3];
+	  temp33 = temp31 + temp32;
+	  temp34 = tx[1] * temp33;
+	  
+	  temp35 = ty[0] * x[3];
+	  temp36 = try[3] * tx[0];
+	  temp37 = temp35 + temp36;
+	  temp38 = ty[1] * temp37;	  
+	  
+	  temp41 = trx[4] * ty[0];
+	  temp42 = tx[0] * y[4];
+	  temp43 = temp41 + temp42;
+	  temp44 = tx[1] * temp34;
+	  
+	  temp45 = ty[0] * x[4];
+	  temp46 = try[4] * tx[0];
+	  temp47 = temp45 + temp46;
+	  temp48 = ty[1] * temp47;	
+	 
+	 
+	  tempr1 = trx[0] + trx[1];
+	  tempr1 = tempr1 + trx[2];
+	  tempr1 = tempr1 + trx[3];
+	  tempr1 = tempr1 + trx[4];
+	  
+	  tempr2 = tempr1 * try[0];
+	  tempr3 = tempr1 * try[1];
+	  tempr4 = tempr1 * try[2];
+	  tempr5 = tempr1 * try[3];
+	  tempr6 = tempr1 * try[4];
+
+
+	  
+	  r10 = temp04 + temp08;
+	  r10 = r10 + tempr2;
+	  
+	  r20 =  temp14 + temp18;
+	  r20 = r20 + tempr3;
+	  
+	  r30 =  temp24 + temp28;
+	  r30 = r30 + tempr4;
+	  
+	  r40 =  temp34 + temp38;
+	  r40 = r40 + tempr5;
+	  
+	  r50 =  temp44 + temp48;
+	  r50 = r50 + tempr6;
+	  
+	  
+	  z[0] = x[0] * y[0];
+	  z[1] = x[1] * y[1];
+	  z[2] = x[2] * y[2];
+	  z[3] = x[3] * y[3];
+	  z[4] = x[4] * y[4];
+	  
+	    z[0] = x[0] * y[0];
+	  z[1] = x[1] * y[1];
+	  z[2] = x[2] * y[2];
+	  z[3] = x[3] * y[3];
+	  z[4] = x[4] * y[4];
+	  
+	  z[0] = z[0] + r[0];
+	  xiyj = x[0] * y[1];
+	  xjyi = x[1] * y[0];
+	  tmp0 = xiyj + r[0];
+	  tmp1 = tmp0 + xjyi;
+	  z[1] = z[1] + tmp1;
+	  
+	  z[0] = z[0] + r[1];
+	  xiyj = x[0] * y[2];
+	  xjyi = x[2] * y[0];
+	  tmp0 = xiyj + r[1];
+	  tmp1 = tmp0 + xjyi;
+	  z[2] = z[2] + tmp1;
+	  
+	  z[0] = z[0] + r[2];
+	  xiyj = x[0] * y[3];
+	  xjyi = x[3] * y[0];
+	  tmp0 = xiyj + r[2];
+	  tmp1 = tmp0 + xjyi;
+	  z[3] = z[3] + tmp1;
+	  
+	  z[0] = z[0] + r[3];
+	  xiyj = x[0] * y[4];
+	  xjyi = x[4] * y[0];
+	  tmp0 = xiyj + r[3];
+	  tmp1 = tmp0 + xjyi;
+	  z[4] = z[4] + tmp1;
+	  
+	  z[1] = z[1] + r[4];
+	  xiyj = x[1] * y[2];
+	  xjyi = x[2] * y[1];
+	  tmp0 = xiyj + r[4];
+	  tmp1 = tmp0 + xjyi;
+	  z[2] = z[2] + tmp1;
+	  
+	  z[1] = z[1] + r[5];
+	  xiyj = x[1] * y[3];
+	  xjyi = x[3] * y[1];
+	  tmp0 = xiyj + r[5];
+	  tmp1 = tmp0 + xjyi;
+	  z[3] = z[3] + tmp1;
+	  
+	  z[1] = z[1] + r[6];
+	  xiyj = x[1] * y[4];
+	  xjyi = x[4] * y[1];
+	  tmp0 = xiyj + r[6];
+	  tmp1 = tmp0 + xjyi;
+	  z[4] = z[4] + tmp1;
+	  
+	  z[2] = z[2] + r[7];
+	  xiyj = x[2] * y[3];
+	  xjyi = x[3] * y[2];
+	  tmp0 = xiyj + r[7];
+	  tmp1 = tmp0 + xjyi;
+	  z[3] = z[3] + tmp1;
+	  
+	  z[2] = z[2] + r[8];
+	  xiyj = x[2] * y[4];
+	  xjyi = x[4] * y[2];
+	  tmp0 = xiyj + r[8];
+	  tmp1 = tmp0 + xjyi;
+	  z[4] = z[4] + tmp1;
+	  
+	  z[3] = z[3] + r[9];
+	  xiyj = x[3] * y[4];
+	  xjyi = x[4] * y[3];
+	  tmp0 = xiyj + r[9];
+	  tmp1 = tmp0 + xjyi;
+	  z[4] = z[4] + tmp1;
+	   
+	  z[0] = z[0] + r10;
+  	  z[1] = z[1] + r20;
+  	  z[2] = z[2] + r30;
+  	  z[3] = z[3] + r40;
+  	  z[4] = z[4] + r50;
+		   
+  end
+
+verbose 1
+order 4 noglitch  NI AND

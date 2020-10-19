@@ -1,0 +1,31 @@
+proc XOR:
+  public inputs: tx[0:2], ty[0:2]	
+  inputs: x[0:3], y[0:3]
+  outputs: z[0:3], tz[0:2];
+    
+    tz := tx + ty;
+    z := x + y;
+    
+     x2_y2 = tx[2] + ty[2];
+    x0_y0 = tx[0] + ty[0];
+    
+    x2y0  = tx[2] * ty[0];
+    
+    t1 = ty[2] * x0_y0;
+    t2 = t1 + x2y0;
+    t3 = t2 * tx[2]; 
+    
+    t4 = tx[0] * x2_y2;
+    t5 = t4 + x2y0;
+    t6 = t5 * ty[1]; 
+    
+    U= t3 + t6;
+    z[3] = z[3] + U;
+  
+  
+  end
+
+verbose 1
+order 3 noglitch Probing XOR
+
+

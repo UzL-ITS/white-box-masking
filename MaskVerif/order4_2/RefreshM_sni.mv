@@ -1,0 +1,105 @@
+proc RefreshM:
+  public inputs: tx[0:2]
+  inputs: x[0:4]
+  outputs: z[0:4],tz[0:2]
+  randoms: tr[0:2],r[0:10];
+    
+    z[0] = x[0] + r[1];
+    z[1] = x[1] + r[1];
+    
+    z[0] = z[0] + r[2];
+    z[2] = x[2] + r[2];
+    
+    z[0] = z[0] + r[3];
+    z[3] = x[3] + r[3];
+    
+    z[0] = z[0] + r[4];
+    z[4] = x[4] + r[4];
+    
+    
+    
+    z[1] = z[1] + r[5];
+    z[2] = z[2] + r[5];
+    
+    z[1] = z[1] + r[6];
+    z[3] = z[3] + r[6];
+    
+    z[1] = z[1] + r[7];
+    z[4] = z[4] + r[7];
+    
+    z[2] = z[2] + r[8];
+    z[3] = z[3] + r[8];
+    
+    z[2] = z[2] + r[9];
+    z[4] = z[4] + r[9];
+    
+    z[3] = z[3] + r[10];
+    z[4] = z[4] + r[10];
+    
+  
+      tz[0] = tx[0] + tr[0];
+    tz[1] = tx[1] + tr[1]; 
+    tz[2] = tx[2] + tr[2]; 
+  
+    x0r0 = tx[0] + r[0];
+    x1r0 = tx[1] + r[0];
+    x2r0 = tx[2] + r[0];
+    
+    r1r2 = tr[1] * tr[2];
+    r0r2 = tr[0] * tr[2];
+    r0r1 = tr[0] * tr[1];
+    
+    t1 = r1r2 * x0r0;
+    t2 = r0r2 * x1r0;
+    t3 = r0r1 * x2r0;
+    
+    t4 = x0r0 * x1r0;
+    t5 = x0r0 * x2r0;
+    t6 = x1r0 * x2r0;
+    
+    t7 = tr[2] * t4;
+    t8 = tr[1] * t5;
+    t9 = tr[0] * t6;
+    
+    W = t1 + t2;
+    W = W  + t3; 
+    W = W  + t7;
+    W = W  + t8;
+    W = W  + t9;
+    
+     
+    r0r0 = tr[0] + r[0];
+    r1r0 = tr[1] + r[0];
+    r2r0 = tr[2] + r[0];
+    
+    t1 = r0r0 * r1r0;
+    t2 = t1   * r2r0;
+    
+    t3 = x0r0 * tr[2];
+    t4 = x0r0 * tr[1];
+    t5 = x1r0 * tr[0];
+    
+    t6 = x1r0 * tr[2];
+    t7 = x2r0 * tr[1];
+    t8 = x2r0 * tr[0];
+	
+    t9  = t3 + t4;
+    t10 = t9 + t5;
+    
+    t11 = r[0]*t10;
+    
+    t12 = t6  + t7;
+    t13 = t12 + t8;
+    t14 = r[0]*t13;	    
+    
+    
+    R = t14 + t11;
+    
+    z[4] = z[4] + W;
+    z[4] = z[4] + R;
+    
+  
+  end
+
+verbose 1
+order 4 noglitch  SNI RefreshM
