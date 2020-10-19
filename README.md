@@ -74,6 +74,14 @@ Fixed vs Random mode Selected: 10 encryption will be processed using fixed or ra
 
 analyis.m contains the matlab code for the analysis. It inputs two file 'plaintext.txt' and 'trace.txt' and proceed a basic DCA attack using these files. The file contains DCA attacks and t-test (using the software trace collected by FvR mode of AES-128  implementation). 
 
+# MaskVerif
+
+The verification uses the tool MaskVerif: https://cryptoexperts.com/maskverif/ 
+The gadget codes can be directly used with MaskVerif.
+
+`./maskverif < order4_2/and_sni.mv ` 
+
+
 # Algebraic verification
 
 The experimental verification of first-order algebraic security of gadgets: 
