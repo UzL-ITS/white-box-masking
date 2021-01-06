@@ -44,26 +44,23 @@ proc RefreshM:
     x1r0 = tx[1] + r[0];
     x2r0 = tx[2] + r[0];
     
-    r1r2 = tr[1] * tr[2];
-    r0r2 = tr[0] * tr[2];
-    r0r1 = tr[0] * tr[1];
+    x0r0 = tx[0] + r[0];
+    x1r0 = tx[1] + r[0];
+    x2r0 = tx[2] + r[0];
     
-    t1 = r1r2 * x0r0;
-    t2 = r0r2 * x1r0;
-    t3 = r0r1 * x2r0;
-    
-    t4 = x0r0 * x1r0;
-    t5 = x0r0 * x2r0;
-    t6 = x1r0 * x2r0;
-    
-    t7 = tr[2] * t4;
-    t8 = tr[1] * t5;
-    t9 = tr[0] * t6;
-    
-    W = t1 + t2;
-    W = W  + t3; 
-    W = W  + t7;
-    W = W  + t8;
+	t1 = tr[2] * x0r0;
+	t2 = tr[1] * x2r0;
+	t3 = tr[0] * x1r0;
+	
+	t4 = x1r0 + tr[1];
+	t5 = x0r0 + tr[0];
+	t6 = x2r0 + tr[2];
+
+    t7 = t1 * t4;
+	t8 = t2 * t5;
+	t9 = t3 * t6;	
+	
+    W = t7 + t8;
     W = W  + t9;
     
      

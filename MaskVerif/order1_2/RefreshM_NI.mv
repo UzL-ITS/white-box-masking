@@ -29,7 +29,6 @@ proc RefreshM:
 	t8 = t2 * t5;
 	t9 = t3 * t6;	
 	
-    
     W = t7 + t8;
     W = W  + t9;
      
